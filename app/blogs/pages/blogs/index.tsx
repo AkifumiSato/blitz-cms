@@ -23,7 +23,7 @@ export const BlogsList = () => {
         {blogs.map((blog) => (
           <li key={blog.id}>
             <Link href={`/blogs/${blog.id}`}>
-              <a>{blog.name}</a>
+              <a>{blog.title}</a>
             </Link>
           </li>
         ))}

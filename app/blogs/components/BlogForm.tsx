@@ -1,11 +1,10 @@
 import React from "react"
 
 type BlogFormProps = {
-  initialValues: any
   onSubmit: React.FormEventHandler<HTMLFormElement>
 }
 
-const BlogForm = ({ initialValues, onSubmit }: BlogFormProps) => {
+const BlogForm: React.FC<BlogFormProps> = ({ onSubmit, children }) => {
   return (
     <form
       onSubmit={(event) => {
@@ -13,9 +12,14 @@ const BlogForm = ({ initialValues, onSubmit }: BlogFormProps) => {
         onSubmit(event)
       }}
     >
-      <div>Put your form fields here. But for now, just click submit</div>
-      <div>{JSON.stringify(initialValues)}</div>
-      <button>Submit</button>
+      {children}
+      <button
+        style={{
+          marginTop: "30px",
+        }}
+      >
+        Submit
+      </button>
     </form>
   )
 }
