@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import Layout from "app/layouts/Layout"
 import { Link, useRouter, useQuery, useMutation, useParam, BlitzPage } from "blitz"
 import getBlog from "app/blogs/queries/getBlog"
@@ -10,6 +10,8 @@ export const EditBlog = () => {
   const blogId = useParam("blogId", "number")
   const [blog, { setQueryData }] = useQuery(getBlog, { where: { id: blogId } })
   const [updateBlogMutation] = useMutation(updateBlog)
+  const [editedTitle, setTitle] = useState(blog.title)
+  const [editedBody, setBody] = useState(blog.body)
 
   return (
     <div>
@@ -17,12 +19,11 @@ export const EditBlog = () => {
       <pre>{JSON.stringify(blog)}</pre>
 
       <BlogForm
-        initialValues={blog}
         onSubmit={async () => {
           try {
             const updated = await updateBlogMutation({
               where: { id: blog.id },
-              data: { name: "MyNewName" },
+              data: { title: editedTitle, body: editedBody },
             })
             await setQueryData(updated)
             alert("Success!" + JSON.stringify(updated))
@@ -32,7 +33,16 @@ export const EditBlog = () => {
             alert("Error creating blog " + JSON.stringify(error, null, 2))
           }
         }}
-      />
+      >
+        <h3>Title</h3>
+        <div>
+          <input type="text" value={editedTitle} onChange={(e) => setTitle(e.target.value)} />
+        </div>
+        <h3>Body</h3>
+        <div>
+          <textarea value={editedBody} onChange={(e) => setBody(e.target.value)} />
+        </div>
+      </BlogForm>
     </div>
   )
 }
