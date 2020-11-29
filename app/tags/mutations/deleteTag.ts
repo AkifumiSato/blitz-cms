@@ -1,7 +1,7 @@
-import { Ctx } from "blitz"
-import db, { TagDeleteArgs } from "db"
+import { Ctx } from 'blitz'
+import db, { TagDeleteArgs } from 'db'
 
-type DeleteTagInput = Pick<TagDeleteArgs, "where">
+type DeleteTagInput = Pick<TagDeleteArgs, 'where'>
 
 export default async function deleteTag({ where }: DeleteTagInput, ctx: Ctx) {
   ctx.session.authorize()

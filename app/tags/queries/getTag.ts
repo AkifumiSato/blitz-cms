@@ -1,7 +1,7 @@
-import { Ctx, NotFoundError } from "blitz"
-import db, { FindFirstTagArgs } from "db"
+import { Ctx, NotFoundError } from 'blitz'
+import db, { FindFirstTagArgs } from 'db'
 
-type GetTagInput = Pick<FindFirstTagArgs, "where">
+type GetTagInput = Pick<FindFirstTagArgs, 'where'>
 
 export default async function getTag({ where }: GetTagInput, ctx: Ctx) {
   ctx.session.authorize()

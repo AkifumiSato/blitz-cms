@@ -1,8 +1,8 @@
-import { Link, BlitzPage, useMutation } from "blitz"
-import Layout from "app/layouts/Layout"
-import logout from "app/auth/mutations/logout"
-import { useCurrentUser } from "app/hooks/useCurrentUser"
-import { Suspense } from "react"
+import { Link, BlitzPage, useMutation } from 'blitz'
+import Layout from 'app/layouts/Layout'
+import logout from 'app/auth/mutations/logout'
+import { useCurrentUser } from 'app/hooks/useCurrentUser'
+import { Suspense } from 'react'
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -57,7 +57,7 @@ const Home: BlitzPage = () => {
         </div>
         <div
           style={{
-            marginTop: "50px",
+            marginTop: '50px',
           }}
         >
           <h2>Login information</h2>

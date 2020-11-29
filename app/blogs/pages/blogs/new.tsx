@@ -1,14 +1,14 @@
-import Layout from "app/layouts/Layout"
-import { Link, useRouter, useMutation, BlitzPage } from "blitz"
-import createBlog from "app/blogs/mutations/createBlog"
-import BlogForm from "app/blogs/components/BlogForm"
-import { useState } from "react"
+import Layout from 'app/layouts/Layout'
+import { Link, useRouter, useMutation, BlitzPage } from 'blitz'
+import createBlog from 'app/blogs/mutations/createBlog'
+import BlogForm from 'app/blogs/components/BlogForm'
+import { useState } from 'react'
 
 const NewBlogPage: BlitzPage = () => {
   const router = useRouter()
   const [createBlogMutation] = useMutation(createBlog)
-  const [title, setTitle] = useState("please input blog title!")
-  const [body, setBody] = useState("please input blog body!")
+  const [title, setTitle] = useState('please input blog title!')
+  const [body, setBody] = useState('please input blog body!')
 
   return (
     <div>
@@ -16,7 +16,7 @@ const NewBlogPage: BlitzPage = () => {
 
       <div
         style={{
-          marginTop: "30px",
+          marginTop: '30px',
         }}
       >
         <BlogForm
@@ -28,16 +28,20 @@ const NewBlogPage: BlitzPage = () => {
                   body,
                 },
               })
-              alert("Success!" + JSON.stringify(blog))
+              alert('Success!' + JSON.stringify(blog))
               router.push(`/blogs/${blog.id}`)
             } catch (error) {
-              alert("Error creating blog " + JSON.stringify(error, null, 2))
+              alert('Error creating blog ' + JSON.stringify(error, null, 2))
             }
           }}
         >
           <h3>Title</h3>
           <div>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
           <h3>Body</h3>
           <div>
@@ -55,6 +59,8 @@ const NewBlogPage: BlitzPage = () => {
   )
 }
 
-NewBlogPage.getLayout = (page) => <Layout title={"Create New Blog"}>{page}</Layout>
+NewBlogPage.getLayout = (page) => (
+  <Layout title={'Create New Blog'}>{page}</Layout>
+)
 
 export default NewBlogPage

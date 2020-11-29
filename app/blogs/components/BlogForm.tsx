@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 type BlogFormProps = {
   onSubmit: React.FormEventHandler<HTMLFormElement>
@@ -15,7 +15,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ onSubmit, children }) => {
       {children}
       <button
         style={{
-          marginTop: "30px",
+          marginTop: '30px',
         }}
       >
         Submit

@@ -1,5 +1,5 @@
-import { Suspense, useState } from "react"
-import Layout from "app/layouts/Layout"
+import { Suspense, useState } from 'react'
+import Layout from 'app/layouts/Layout'
 import {
   Link,
   useRouter,
@@ -8,24 +8,24 @@ import {
   useParam,
   BlitzPage,
   usePaginatedQuery,
-} from "blitz"
-import getBlog from "app/blogs/queries/getBlog"
-import updateBlog from "app/blogs/mutations/updateBlog"
-import BlogForm from "app/blogs/components/BlogForm"
-import getTags from "app/tags/queries/getTags"
-import createTag from "../../../../tags/mutations/createTag"
-import TagsForm from "../../../components/TagsForm"
+} from 'blitz'
+import getBlog from 'app/blogs/queries/getBlog'
+import updateBlog from 'app/blogs/mutations/updateBlog'
+import BlogForm from 'app/blogs/components/BlogForm'
+import getTags from 'app/tags/queries/getTags'
+import createTag from '../../../../tags/mutations/createTag'
+import TagsForm from '../../../components/TagsForm'
 
 export const EditBlog = () => {
   const router = useRouter()
-  const blogId = useParam("blogId", "number")
+  const blogId = useParam('blogId', 'number')
   const [blog, { setQueryData }] = useQuery(getBlog, { where: { id: blogId } })
   const [updateBlogMutation] = useMutation(updateBlog)
   const [createTagMutation] = useMutation(createTag)
   const [editedTitle, setTitle] = useState(blog.title)
   const [editedBody, setBody] = useState(blog.body)
   const [{ tags }] = usePaginatedQuery(getTags, {
-    orderBy: { id: "asc" },
+    orderBy: { id: 'asc' },
   })
 
   return (
@@ -47,10 +47,10 @@ export const EditBlog = () => {
                 },
               },
             })
-            alert("Success!" + JSON.stringify(tag))
+            alert('Success!' + JSON.stringify(tag))
           } catch (error) {
             console.log(error)
-            alert("Error creating tag " + JSON.stringify(error, null, 2))
+            alert('Error creating tag ' + JSON.stringify(error, null, 2))
           }
         }}
       />
@@ -63,21 +63,28 @@ export const EditBlog = () => {
               data: { title: editedTitle, body: editedBody },
             })
             await setQueryData(updated)
-            alert("Success!" + JSON.stringify(updated))
+            alert('Success!' + JSON.stringify(updated))
             router.push(`/blogs/${updated.id}`)
           } catch (error) {
             console.log(error)
-            alert("Error creating blog " + JSON.stringify(error, null, 2))
+            alert('Error creating blog ' + JSON.stringify(error, null, 2))
           }
         }}
       >
         <h3>Title</h3>
         <div>
-          <input type="text" value={editedTitle} onChange={(e) => setTitle(e.target.value)} />
+          <input
+            type="text"
+            value={editedTitle}
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </div>
         <h3>Body</h3>
         <div>
-          <textarea value={editedBody} onChange={(e) => setBody(e.target.value)} />
+          <textarea
+            value={editedBody}
+            onChange={(e) => setBody(e.target.value)}
+          />
         </div>
       </BlogForm>
     </div>
@@ -100,6 +107,6 @@ const EditBlogPage: BlitzPage = () => {
   )
 }
 
-EditBlogPage.getLayout = (page) => <Layout title={"Edit Blog"}>{page}</Layout>
+EditBlogPage.getLayout = (page) => <Layout title={'Edit Blog'}>{page}</Layout>
 
 export default EditBlogPage

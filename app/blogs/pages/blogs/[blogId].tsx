@@ -1,12 +1,19 @@
-import { Suspense } from "react"
-import Layout from "app/layouts/Layout"
-import { Link, useRouter, useQuery, useParam, BlitzPage, useMutation } from "blitz"
-import getBlog from "app/blogs/queries/getBlog"
-import deleteBlog from "app/blogs/mutations/deleteBlog"
+import { Suspense } from 'react'
+import Layout from 'app/layouts/Layout'
+import {
+  Link,
+  useRouter,
+  useQuery,
+  useParam,
+  BlitzPage,
+  useMutation,
+} from 'blitz'
+import getBlog from 'app/blogs/queries/getBlog'
+import deleteBlog from 'app/blogs/mutations/deleteBlog'
 
 export const Blog = () => {
   const router = useRouter()
-  const blogId = useParam("blogId", "number")
+  const blogId = useParam('blogId', 'number')
   const [blog] = useQuery(getBlog, { where: { id: blogId } })
   const [deleteBlogMutation] = useMutation(deleteBlog)
 
@@ -22,9 +29,9 @@ export const Blog = () => {
       <button
         type="button"
         onClick={async () => {
-          if (window.confirm("This will be deleted")) {
+          if (window.confirm('This will be deleted')) {
             await deleteBlogMutation({ where: { id: blog.id } })
-            router.push("/blogs")
+            router.push('/blogs')
           }
         }}
       >
@@ -50,6 +57,6 @@ const ShowBlogPage: BlitzPage = () => {
   )
 }
 
-ShowBlogPage.getLayout = (page) => <Layout title={"Blog"}>{page}</Layout>
+ShowBlogPage.getLayout = (page) => <Layout title={'Blog'}>{page}</Layout>
 
 export default ShowBlogPage

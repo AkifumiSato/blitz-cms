@@ -1,7 +1,10 @@
-import { Ctx } from "blitz"
-import db, { FindManyBlogArgs } from "db"
+import { Ctx } from 'blitz'
+import db, { FindManyBlogArgs } from 'db'
 
-type GetBlogsInput = Pick<FindManyBlogArgs, "where" | "orderBy" | "skip" | "take">
+type GetBlogsInput = Pick<
+  FindManyBlogArgs,
+  'where' | 'orderBy' | 'skip' | 'take'
+>
 
 export default async function getBlogs(
   { where, orderBy, skip = 0, take }: GetBlogsInput,
@@ -17,7 +20,7 @@ export default async function getBlogs(
   })
 
   const count = await db.blog.count()
-  const hasMore = typeof take === "number" ? skip + take < count : false
+  const hasMore = typeof take === 'number' ? skip + take < count : false
   const nextPage = hasMore ? { take, skip: skip + take! } : null
 
   return {

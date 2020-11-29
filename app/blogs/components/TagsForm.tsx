@@ -1,5 +1,5 @@
-import { Tag } from "@prisma/client"
-import React, { useState } from "react"
+import { Tag } from '@prisma/client'
+import React, { useState } from 'react'
 
 type TagsFormProps = {
   tags: Tag[]
@@ -7,7 +7,7 @@ type TagsFormProps = {
 }
 
 const TagsForm: React.FC<TagsFormProps> = ({ tags, onSubmit }) => {
-  const [name, setName] = useState("")
+  const [name, setName] = useState('')
 
   return (
     <form
@@ -26,11 +26,15 @@ const TagsForm: React.FC<TagsFormProps> = ({ tags, onSubmit }) => {
 
       <h3>New tag name</h3>
       <div>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
       <button
         style={{
-          marginTop: "30px",
+          marginTop: '30px',
         }}
       >
         Submit
