@@ -3,3 +3,6 @@
 *.ico
 *.lock
 db/migrations
+node_modules/
+.blitz
+.next
