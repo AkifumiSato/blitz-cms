@@ -1,22 +1,59 @@
 import { Suspense, useState } from "react"
 import Layout from "app/layouts/Layout"
-import { Link, useRouter, useQuery, useMutation, useParam, BlitzPage } from "blitz"
+import {
+  Link,
+  useRouter,
+  useQuery,
+  useMutation,
+  useParam,
+  BlitzPage,
+  usePaginatedQuery,
+} from "blitz"
 import getBlog from "app/blogs/queries/getBlog"
 import updateBlog from "app/blogs/mutations/updateBlog"
 import BlogForm from "app/blogs/components/BlogForm"
+import getTags from "app/tags/queries/getTags"
+import createTag from "../../../../tags/mutations/createTag"
+import TagsForm from "../../../components/TagsForm"
 
 export const EditBlog = () => {
   const router = useRouter()
   const blogId = useParam("blogId", "number")
   const [blog, { setQueryData }] = useQuery(getBlog, { where: { id: blogId } })
   const [updateBlogMutation] = useMutation(updateBlog)
+  const [createTagMutation] = useMutation(createTag)
   const [editedTitle, setTitle] = useState(blog.title)
   const [editedBody, setBody] = useState(blog.body)
+  const [{ tags }] = usePaginatedQuery(getTags, {
+    orderBy: { id: "asc" },
+  })
 
   return (
     <div>
       <h1>Edit Blog {blog.id}</h1>
       <pre>{JSON.stringify(blog)}</pre>
+
+      <TagsForm
+        tags={tags}
+        onSubmit={async (_e, name) => {
+          try {
+            const tag = await createTagMutation({
+              data: {
+                name,
+                blog: {
+                  connect: {
+                    id: blog.id,
+                  },
+                },
+              },
+            })
+            alert("Success!" + JSON.stringify(tag))
+          } catch (error) {
+            console.log(error)
+            alert("Error creating tag " + JSON.stringify(error, null, 2))
+          }
+        }}
+      />
 
       <BlogForm
         onSubmit={async () => {
