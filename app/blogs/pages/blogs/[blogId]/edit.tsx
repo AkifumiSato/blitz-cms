@@ -56,7 +56,7 @@ export const EditBlog = () => {
       />
 
       <BlogForm
-        onSubmit={async () => {
+        onSubmitClick={async () => {
           try {
             const updated = await updateBlogMutation({
               where: { id: blog.id },

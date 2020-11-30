@@ -30,6 +30,7 @@ const sizeProperty: SizeDictionary = {
     height: '20px',
   },
 }
+
 type SizeProps = keyof SizeDictionary
 
 const ButtonLink: React.FC<LinkProps & { size?: SizeProps }> = ({

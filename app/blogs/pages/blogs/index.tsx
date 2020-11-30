@@ -2,11 +2,12 @@
 import { css, jsx } from '@emotion/react'
 import React, { Suspense } from 'react'
 import SlimLayout from 'app/layouts/SlimLayout'
-import { usePaginatedQuery, useRouter, BlitzPage, Link } from 'blitz'
+import { usePaginatedQuery, useRouter, BlitzPage } from 'blitz'
 import getBlogs from 'app/blogs/queries/getBlogs'
 import ButtonLink from '../../../components/ButtonLink'
 import { colors } from '../../../stylesheets/colors'
 import BlogItem from '../../components/BlogItem'
+import Title from 'app/blogs/components/Title'
 
 const ITEMS_PER_PAGE = 100
 
@@ -64,14 +65,17 @@ export const BlogsList = () => {
         css={css`
           font-size: 20px;
           width: 100%;
-
-          & > li:not(:first-child) {
-            margin-top: 10px;
-          }
         `}
       >
         {blogs.map((blog) => (
-          <li key={blog.id}>
+          <li
+            key={blog.id}
+            css={css`
+              &:not(:first-of-type) {
+                margin-top: 10px;
+              }
+            `}
+          >
             <BlogItem href={`/blogs/${blog.id}`}>{blog.title}</BlogItem>
           </li>
         ))}
@@ -112,15 +116,7 @@ const BlogsPage: BlitzPage = () => {
           justify-content: space-between;
         `}
       >
-        <h1
-          css={css`
-            font-size: 50px;
-            font-weight: bold;
-            color: ${colors.teal['900']};
-          `}
-        >
-          Blog dashboard
-        </h1>
+        <Title>Blog dashboard</Title>
         <div
           css={css`
             width: 200px;

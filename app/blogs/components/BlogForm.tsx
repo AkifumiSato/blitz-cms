@@ -1,25 +1,31 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react'
 import React from 'react'
+import Button from '../../components/Button'
 
 type BlogFormProps = {
-  onSubmit: React.FormEventHandler<HTMLFormElement>
+  onSubmitClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const BlogForm: React.FC<BlogFormProps> = ({ onSubmit, children }) => {
+const BlogForm: React.FC<BlogFormProps> = ({ onSubmitClick, children }) => {
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault()
-        onSubmit(event)
-      }}
-    >
+    <form>
       {children}
-      <button
-        style={{
-          marginTop: '30px',
-        }}
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+          margin-top: 30px;
+        `}
       >
-        Submit
-      </button>
+        <div
+          css={css`
+            width: 300px;
+          `}
+        >
+          <Button onClick={onSubmitClick}>Submit</Button>
+        </div>
+      </div>
     </form>
   )
 }
