@@ -18,6 +18,7 @@ const BlogItem: React.FC<LinkProps> = ({ children, ...props }) => {
           padding: 20px;
           width: 100%;
           transition: background-color 0.5s;
+          cursor: pointer;
 
           &:hover {
             background-color: ${colors.gray['100']};

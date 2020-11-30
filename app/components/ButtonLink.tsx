@@ -40,7 +40,7 @@ const ButtonLink: React.FC<LinkProps & { size?: SizeProps }> = ({
   const { fontSize, height } = sizeProperty[size]
   return (
     <Link {...props}>
-      <div
+      <a
         css={css`
           background-color: ${colors.blue['400']};
           border-radius: 5px;
@@ -54,14 +54,15 @@ const ButtonLink: React.FC<LinkProps & { size?: SizeProps }> = ({
           padding: 0 10px;
           width: 100%;
           transition: background-color 0.5s;
+          cursor: pointer;
 
           &:hover {
             background-color: ${colors.blue['200']};
           }
         `}
       >
-        <a>{children}</a>
-      </div>
+        <div>{children}</div>
+      </a>
     </Link>
   )
 }
