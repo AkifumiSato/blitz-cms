@@ -1,7 +1,11 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react'
 import { Suspense } from 'react'
 import Layout from 'app/layouts/Layout'
-import { Link, usePaginatedQuery, useRouter, BlitzPage } from 'blitz'
+import { usePaginatedQuery, useRouter, BlitzPage, Link } from 'blitz'
 import getBlogs from 'app/blogs/queries/getBlogs'
+import ButtonLink from '../../../components/ButtonLink'
+import { colors } from '../../../stylesheets/colors'
 
 const ITEMS_PER_PAGE = 100
 
@@ -19,7 +23,16 @@ export const BlogsList = () => {
 
   return (
     <div>
-      <ul>
+      <ul
+        css={css`
+          font-size: 20px;
+          margin-top: 30px;
+
+          & > li:not(:first-child) {
+            margin-top: 10px;
+          }
+        `}
+      >
         {blogs.map((blog) => (
           <li key={blog.id}>
             <Link href={`/blogs/${blog.id}`}>
@@ -29,24 +42,57 @@ export const BlogsList = () => {
         ))}
       </ul>
 
-      <button disabled={page === 0} onClick={goToPreviousPage}>
-        Previous
-      </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
-        Next
-      </button>
+      <div
+        css={css`
+          display: flex;
+          justify-content: space-between;
+          margin-top: 30px;
+          width: 300px;
+        `}
+      >
+        <button disabled={page === 0} onClick={goToPreviousPage}>
+          Previous
+        </button>
+        <button disabled={!hasMore} onClick={goToNextPage}>
+          Next
+        </button>
+      </div>
     </div>
   )
 }
 
 const BlogsPage: BlitzPage = () => {
   return (
-    <div>
-      <p>
-        <Link href="/blogs/new">
-          <a>Create Blog</a>
-        </Link>
-      </p>
+    <div
+      css={css`
+        margin: 50px auto 0;
+        max-width: 1200px;
+      `}
+    >
+      <div
+        css={css`
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        `}
+      >
+        <h1
+          css={css`
+            font-size: 50px;
+            font-weight: bold;
+            color: ${colors.teal['900']};
+          `}
+        >
+          Blog dashboard
+        </h1>
+        <div
+          css={css`
+            width: 200px;
+          `}
+        >
+          <ButtonLink href="/blogs/new">NEW POST</ButtonLink>
+        </div>
+      </div>
 
       <Suspense fallback={<div>Loading...</div>}>
         <BlogsList />
