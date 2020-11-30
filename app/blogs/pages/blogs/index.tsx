@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 import { Suspense } from 'react'
-import Layout from 'app/layouts/Layout'
+import SlimLayout from 'app/layouts/SlimLayout'
 import { usePaginatedQuery, useRouter, BlitzPage, Link } from 'blitz'
 import getBlogs from 'app/blogs/queries/getBlogs'
 import ButtonLink from '../../../components/ButtonLink'
 import { colors } from '../../../stylesheets/colors'
+import BlogItem from '../../components/BlogItem'
 
 const ITEMS_PER_PAGE = 100
 
@@ -26,7 +27,7 @@ export const BlogsList = () => {
       <ul
         css={css`
           font-size: 20px;
-          margin-top: 30px;
+          width: 100%;
 
           & > li:not(:first-child) {
             margin-top: 10px;
@@ -35,9 +36,7 @@ export const BlogsList = () => {
       >
         {blogs.map((blog) => (
           <li key={blog.id}>
-            <Link href={`/blogs/${blog.id}`}>
-              <a>{blog.title}</a>
-            </Link>
+            <BlogItem href={`/blogs/${blog.id}`}>{blog.title}</BlogItem>
           </li>
         ))}
       </ul>
@@ -46,8 +45,8 @@ export const BlogsList = () => {
         css={css`
           display: flex;
           justify-content: space-between;
-          margin-top: 30px;
-          width: 300px;
+          margin-top: 50px;
+          width: 100%;
         `}
       >
         <button disabled={page === 0} onClick={goToPreviousPage}>
@@ -63,12 +62,7 @@ export const BlogsList = () => {
 
 const BlogsPage: BlitzPage = () => {
   return (
-    <div
-      css={css`
-        margin: 50px auto 0;
-        max-width: 1200px;
-      `}
-    >
+    <>
       <div
         css={css`
           display: flex;
@@ -94,13 +88,19 @@ const BlogsPage: BlitzPage = () => {
         </div>
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <BlogsList />
-      </Suspense>
-    </div>
+      <div
+        css={css`
+          margin-top: 50px;
+        `}
+      >
+        <Suspense fallback={<div>Loading...</div>}>
+          <BlogsList />
+        </Suspense>
+      </div>
+    </>
   )
 }
 
-BlogsPage.getLayout = (page) => <Layout title={'Blogs'}>{page}</Layout>
+BlogsPage.getLayout = (page) => <SlimLayout title={'Blogs'}>{page}</SlimLayout>
 
 export default BlogsPage
