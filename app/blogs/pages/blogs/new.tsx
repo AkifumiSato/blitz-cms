@@ -6,6 +6,7 @@ import BlogForm from 'app/blogs/components/BlogForm'
 import { useState } from 'react'
 import SlimLayout from '../../../layouts/SlimLayout'
 import { colors } from '../../../stylesheets/colors'
+import LinkText from '../../components/LinkText'
 import Title from '../../components/Title'
 
 const formTitleStyle = css`
@@ -29,15 +30,7 @@ const NewBlogPage: BlitzPage = () => {
         `}
       >
         <div>
-          <Link href="/blogs">
-            <a
-              css={css`
-                text-decoration: underline;
-              `}
-            >
-              &lt; Blogs
-            </a>
-          </Link>
+          <LinkText href="/blogs">&lt; Blogs</LinkText>
         </div>
         <div
           css={css`
@@ -45,7 +38,8 @@ const NewBlogPage: BlitzPage = () => {
           `}
         >
           <BlogForm
-            onSubmitClick={async () => {
+            onSubmitClick={async (e) => {
+              e.preventDefault()
               try {
                 const blog = await createBlogMutation({
                   data: {
@@ -53,7 +47,6 @@ const NewBlogPage: BlitzPage = () => {
                     body,
                   },
                 })
-                alert('Success!' + JSON.stringify(blog))
                 await router.push(`/blogs/${blog.id}`)
               } catch (error) {
                 alert('Error creating blog ' + JSON.stringify(error, null, 2))

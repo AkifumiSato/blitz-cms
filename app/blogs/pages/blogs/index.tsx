@@ -5,11 +5,12 @@ import SlimLayout from 'app/layouts/SlimLayout'
 import { usePaginatedQuery, useRouter, BlitzPage } from 'blitz'
 import getBlogs from 'app/blogs/queries/getBlogs'
 import ButtonLink from '../../../components/ButtonLink'
+import { useCurrentUser } from '../../../hooks/useCurrentUser'
 import { colors } from '../../../stylesheets/colors'
 import BlogItem from '../../components/BlogItem'
 import Title from 'app/blogs/components/Title'
 
-const ITEMS_PER_PAGE = 100
+const ITEMS_PER_PAGE = 10
 
 const PagerButton: React.FC<{
   onClick: React.MouseEventHandler<HTMLButtonElement>
@@ -106,6 +107,15 @@ export const BlogsList = () => {
   )
 }
 
+const LoginUserOnly: React.FC = ({ children }) => {
+  const currentUser = useCurrentUser()
+
+  if (currentUser) {
+    return <>{children}</>
+  }
+  return <></>
+}
+
 const BlogsPage: BlitzPage = () => {
   return (
     <>
@@ -116,14 +126,18 @@ const BlogsPage: BlitzPage = () => {
           justify-content: space-between;
         `}
       >
-        <Title>Blog dashboard</Title>
-        <div
-          css={css`
-            width: 200px;
-          `}
-        >
-          <ButtonLink href="/blogs/new">NEW POST</ButtonLink>
-        </div>
+        <Title>Blog</Title>
+        <Suspense fallback={<div>-</div>}>
+          <LoginUserOnly>
+            <div
+              css={css`
+                width: 200px;
+              `}
+            >
+              <ButtonLink href="/blogs/new">NEW POST</ButtonLink>
+            </div>
+          </LoginUserOnly>
+        </Suspense>
       </div>
 
       <div

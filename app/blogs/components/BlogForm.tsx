@@ -9,7 +9,11 @@ type BlogFormProps = {
 
 const BlogForm: React.FC<BlogFormProps> = ({ onSubmitClick, children }) => {
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+      }}
+    >
       {children}
       <div
         css={css`

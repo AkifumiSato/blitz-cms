@@ -8,10 +8,8 @@ type GetBlogsInput = Pick<
 
 export default async function getBlogs(
   { where, orderBy, skip = 0, take }: GetBlogsInput,
-  ctx: Ctx
+  _ctx: Ctx
 ) {
-  ctx.session.authorize()
-
   const blogs = await db.blog.findMany({
     where,
     orderBy,
