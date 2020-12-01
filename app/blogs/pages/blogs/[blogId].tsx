@@ -8,8 +8,8 @@ import {
   BlitzPage,
   useMutation,
 } from 'blitz'
-import getBlog from 'app/auth/blogs/queries/getBlog'
-import deleteBlog from 'app/auth/blogs/mutations/deleteBlog'
+import getBlog from 'app/blogs/queries/getBlog'
+import deleteBlog from 'app/blogs/mutations/deleteBlog'
 
 export const Blog = () => {
   const router = useRouter()

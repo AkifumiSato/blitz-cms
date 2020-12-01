@@ -3,11 +3,11 @@ import { css, jsx } from '@emotion/react'
 import React, { Suspense } from 'react'
 import SlimLayout from 'app/layouts/SlimLayout'
 import { usePaginatedQuery, useRouter, BlitzPage } from 'blitz'
-import getBlogs from 'app/auth/blogs/queries/getBlogs'
-import ButtonLink from '../../../../components/ButtonLink'
-import { colors } from '../../../../stylesheets/colors'
+import getBlogs from 'app/blogs/queries/getBlogs'
+import ButtonLink from '../../../components/ButtonLink'
+import { colors } from '../../../stylesheets/colors'
 import BlogItem from '../../components/BlogItem'
-import Title from 'app/auth/blogs/components/Title'
+import Title from 'app/blogs/components/Title'
 
 const ITEMS_PER_PAGE = 100
 

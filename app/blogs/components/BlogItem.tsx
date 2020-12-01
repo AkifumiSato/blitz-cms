@@ -3,7 +3,7 @@ import { Link } from '@blitzjs/core'
 import { LinkProps } from 'next/link'
 import { css, jsx } from '@emotion/react'
 import React from 'react'
-import { colors } from '../../../stylesheets/colors'
+import { colors } from '../../stylesheets/colors'
 
 const BlogItem: React.FC<LinkProps> = ({ children, ...props }) => {
   return (
