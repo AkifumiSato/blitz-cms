@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
-import { Link, useRouter, useMutation, BlitzPage } from 'blitz'
+import { useRouter, useMutation, BlitzPage } from 'blitz'
 import createBlog from 'app/blogs/mutations/createBlog'
 import BlogForm from 'app/blogs/components/BlogForm'
 import { useState } from 'react'

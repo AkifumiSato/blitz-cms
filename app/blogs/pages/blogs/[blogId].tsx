@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
-import React, { Suspense } from 'react'
+import React from 'react'
 import {
-  Link,
   useRouter,
   useParam,
   BlitzPage,
@@ -14,6 +13,7 @@ import getBlog from 'app/blogs/queries/getBlog'
 import deleteBlog from 'app/blogs/mutations/deleteBlog'
 import SlimLayout from 'app/layouts/SlimLayout'
 import LinkText from '../../components/LinkText'
+import OutLineButton from '../../components/OutLineButton'
 import Title from '../../components/Title'
 
 type Props = {
@@ -67,12 +67,9 @@ const ShowBlogPage: BlitzPage<Props> = ({ blog }) => {
           width: 300px;
         `}
       >
-        <Link href={`/blogs/${blogId}/edit`}>
-          <a>Edit</a>
-        </Link>
+        <OutLineButton href={`/blogs/${blogId}/edit`}>Edit</OutLineButton>
 
-        <button
-          type="button"
+        <OutLineButton
           onClick={async () => {
             if (window.confirm('This will be deleted')) {
               await deleteBlogMutation({ where: { id: blogId } })
@@ -81,7 +78,7 @@ const ShowBlogPage: BlitzPage<Props> = ({ blog }) => {
           }}
         >
           Delete
-        </button>
+        </OutLineButton>
       </div>
       <div
         css={css`
