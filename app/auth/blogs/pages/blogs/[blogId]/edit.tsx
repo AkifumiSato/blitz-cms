@@ -9,10 +9,10 @@ import {
   BlitzPage,
   usePaginatedQuery,
 } from 'blitz'
-import getBlog from 'app/blogs/queries/getBlog'
-import updateBlog from 'app/blogs/mutations/updateBlog'
-import BlogForm from 'app/blogs/components/BlogForm'
-import getTags from 'app/tags/queries/getTags'
+import getBlog from 'app/auth/blogs/queries/getBlog'
+import updateBlog from 'app/auth/blogs/mutations/updateBlog'
+import BlogForm from 'app/auth/blogs/components/BlogForm'
+import getTags from 'app/auth/tags/queries/getTags'
 import createTag from '../../../../tags/mutations/createTag'
 import TagsForm from '../../../components/TagsForm'
 

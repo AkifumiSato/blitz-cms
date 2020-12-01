@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 import React from 'react'
-import Button from '../../components/Button'
+import Button from '../../../components/Button'
 
 type BlogFormProps = {
   onSubmitClick: React.MouseEventHandler<HTMLButtonElement>

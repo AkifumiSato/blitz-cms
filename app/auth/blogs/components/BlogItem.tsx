@@ -3,7 +3,7 @@ import { Link } from '@blitzjs/core'
 import { LinkProps } from 'next/link'
 import { css, jsx } from '@emotion/react'
 import React from 'react'
-import { colors } from '../../stylesheets/colors'
+import { colors } from '../../../stylesheets/colors'
 
 const BlogItem: React.FC<LinkProps> = ({ children, ...props }) => {
   return (
@@ -17,10 +17,12 @@ const BlogItem: React.FC<LinkProps> = ({ children, ...props }) => {
           font-size: 15px;
           padding: 20px;
           width: 100%;
-          transition: background-color 0.5s;
+          transition-property: color, background-color;
+          transition-duration: 0.5s;
           cursor: pointer;
 
           &:hover {
+            color: ${colors.gray['700']};
             background-color: ${colors.gray['100']};
           }
         `}

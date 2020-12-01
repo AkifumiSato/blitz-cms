@@ -54,10 +54,11 @@ const ButtonLink: React.FC<LinkProps & { size?: SizeProps }> = ({
           height: ${height};
           padding: 0 10px;
           width: 100%;
-          transition: background-color 0.5s;
-          cursor: pointer;
+          transition-property: color, background-color;
+          transition-duration: 0.5s;
 
-          &:hover {
+          &&:hover {
+            color: ${colors.white.base};
             background-color: ${colors.blue['200']};
           }
         `}

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 import React from 'react'
-import { colors } from '../../stylesheets/colors'
+import { colors } from '../../../stylesheets/colors'
 
 const Title: React.FC = ({ children }) => (
   <h1

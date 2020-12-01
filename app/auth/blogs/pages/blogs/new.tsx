@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 import { Link, useRouter, useMutation, BlitzPage } from 'blitz'
-import createBlog from 'app/blogs/mutations/createBlog'
-import BlogForm from 'app/blogs/components/BlogForm'
+import createBlog from 'app/auth/blogs/mutations/createBlog'
+import BlogForm from 'app/auth/blogs/components/BlogForm'
 import { useState } from 'react'
-import SlimLayout from '../../../layouts/SlimLayout'
-import { colors } from '../../../stylesheets/colors'
+import SlimLayout from '../../../../layouts/SlimLayout'
+import { colors } from '../../../../stylesheets/colors'
 import Title from '../../components/Title'
 
 const formTitleStyle = css`
@@ -54,7 +54,7 @@ const NewBlogPage: BlitzPage = () => {
                   },
                 })
                 alert('Success!' + JSON.stringify(blog))
-                router.push(`/blogs/${blog.id}`)
+                await router.push(`/blogs/${blog.id}`)
               } catch (error) {
                 alert('Error creating blog ' + JSON.stringify(error, null, 2))
               }
