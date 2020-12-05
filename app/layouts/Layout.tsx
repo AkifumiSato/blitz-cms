@@ -1,28 +1,50 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
-import { ReactNode } from 'react'
+import { FC } from 'react'
 import { Head, Link } from 'blitz'
 import { colors } from '../stylesheets/colors'
 
-const HomeLinkText: React.FC<{ href: string }> = ({ href }) => (
-  <Link href={href}>
-    <a
+type LinkTextProps = {
+  href: string
+  strong?: boolean
+  disabled?: boolean
+}
+
+const LinkText: FC<LinkTextProps> = ({
+  href,
+  strong = false,
+  disabled = false,
+  children,
+}) =>
+  disabled ? (
+    <div
       css={css`
-        font-size: 20px;
+        font-size: ${strong ? '20px' : '15px'};
         font-weight: bold;
       `}
     >
-      Home
-    </a>
-  </Link>
-)
+      {children}
+    </div>
+  ) : (
+    <Link href={href}>
+      <a
+        css={css`
+          font-size: ${strong ? '20px' : '15px'};
+          font-weight: bold;
+          padding: 10px;
+        `}
+      >
+        {children}
+      </a>
+    </Link>
+  )
 
 type LayoutProps = {
   title?: string
-  children: ReactNode
+  homeLink?: boolean
 }
 
-const Layout = ({ title, children }: LayoutProps) => {
+const Layout: FC<LayoutProps> = ({ title, homeLink = false, children }) => {
   return (
     <>
       <Head>
@@ -44,16 +66,25 @@ const Layout = ({ title, children }: LayoutProps) => {
             box-sizing: border-box;
             height: 70px;
             padding: 5px 50px;
-            color: ${colors.white.base};
-            font-size: 20px;
-            font-weight: bold;
             position: fixed;
             top: 0;
             width: 100vw;
           `}
         >
           <div>
-            <HomeLinkText href="/" />
+            <LinkText href="/" strong={true} disabled={homeLink}>
+              Home
+            </LinkText>
+          </div>
+          <div
+            css={css`
+              display: flex;
+              justify-content: space-between;
+              width: 200px;
+            `}
+          >
+            <LinkText href="/blogs">blog</LinkText>
+            <LinkText href="/admin">admin</LinkText>
           </div>
         </header>
         <div
