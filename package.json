@@ -32,6 +32,7 @@
     "@prisma/cli": "2.11.0",
     "@prisma/client": "2.11.0",
     "blitz": "0.25.0",
+    "date-fns": "2.16.1",
     "final-form": "4.20.1",
     "react": "0.0.0-experimental-4ead6b530",
     "react-dom": "0.0.0-experimental-4ead6b530",

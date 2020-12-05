@@ -41,7 +41,7 @@ export const BlogsList = () => {
               }
             `}
           >
-            <BlogItem href={`/blogs/${blog.id}`}>{blog.title}</BlogItem>
+            <BlogItem href={`/admin/blogs/${blog.id}`}>{blog.title}</BlogItem>
           </li>
         ))}
       </ul>
@@ -80,7 +80,7 @@ const LoginUserOnly: React.FC = ({ children }) => {
   return <></>
 }
 
-const BlogsPage: BlitzPage = () => {
+const AdminDashboardPage: BlitzPage = () => {
   return (
     <>
       <div
@@ -90,15 +90,15 @@ const BlogsPage: BlitzPage = () => {
           justify-content: space-between;
         `}
       >
-        <Title>Blog</Title>
+        <Title>Blog Dashboard</Title>
         <Suspense fallback={<div>-</div>}>
           <LoginUserOnly>
             <div
               css={css`
-                width: 200px;
+                width: 150px;
               `}
             >
-              <ButtonLink href="/blogs/new">NEW POST</ButtonLink>
+              <ButtonLink href="/admin/blogs/new">NEW POST</ButtonLink>
             </div>
           </LoginUserOnly>
         </Suspense>
@@ -117,8 +117,8 @@ const BlogsPage: BlitzPage = () => {
   )
 }
 
-BlogsPage.getLayout = (page) => (
+AdminDashboardPage.getLayout = (page) => (
   <AdminLayout title={'Blogs'}>{page}</AdminLayout>
 )
 
-export default BlogsPage
+export default AdminDashboardPage

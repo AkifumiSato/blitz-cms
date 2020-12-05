@@ -98,7 +98,7 @@ const BlogsPage: BlitzPage = () => {
                 width: 200px;
               `}
             >
-              <ButtonLink href="/blogs/new">NEW POST</ButtonLink>
+              <ButtonLink href="/admin/blogs/new">NEW POST</ButtonLink>
             </div>
           </LoginUserOnly>
         </Suspense>

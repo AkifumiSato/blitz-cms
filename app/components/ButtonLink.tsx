@@ -18,15 +18,15 @@ type SizeDictionary = {
 
 const sizeProperty: SizeDictionary = {
   large: {
-    fontSize: '30px',
-    height: '100px',
-  },
-  normal: {
     fontSize: '18px',
     height: '50px',
   },
-  small: {
+  normal: {
     fontSize: '15px',
+    height: '35px',
+  },
+  small: {
+    fontSize: '12px',
     height: '20px',
   },
 }

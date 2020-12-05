@@ -19,7 +19,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ onSubmitClick, children }) => {
         css={css`
           display: flex;
           justify-content: center;
-          margin-top: 30px;
+          margin-top: 50px;
         `}
       >
         <div

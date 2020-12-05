@@ -59,12 +59,15 @@ const AdminLayout = ({ title, children }: LayoutProps) => {
           `}
         >
           <div>
-            <HomeLinkText href="/" />
+            <HomeLinkText href="/admin" />
           </div>
         </header>
         <div
           css={css`
+            box-sizing: border-box;
             padding: 100px 50px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
           `}
         >
           {children}

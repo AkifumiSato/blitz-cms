@@ -22,7 +22,7 @@ type LayoutProps = {
   children: ReactNode
 }
 
-const AdminLayout = ({ title, children }: LayoutProps) => {
+const Layout = ({ title, children }: LayoutProps) => {
   return (
     <>
       <Head>
@@ -68,4 +68,4 @@ const AdminLayout = ({ title, children }: LayoutProps) => {
   )
 }
 
-export default AdminLayout
+export default Layout

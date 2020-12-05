@@ -4,10 +4,10 @@ import { useRouter, useMutation, BlitzPage } from 'blitz'
 import createBlog from 'app/blogs/mutations/createBlog'
 import BlogForm from 'app/blogs/components/BlogForm'
 import { useState } from 'react'
-import SlimLayout from '../../../layouts/SlimLayout'
-import { colors } from '../../../stylesheets/colors'
-import LinkText from '../../../components/LinkText'
-import Title from '../../components/Title'
+import SlimLayout from 'app/layouts/SlimLayout'
+import { colors } from 'app/stylesheets/colors'
+import LinkText from 'app/components/LinkText'
+import Title from 'app/auth/components/Title'
 
 const formTitleStyle = css`
   font-size: 20px;
