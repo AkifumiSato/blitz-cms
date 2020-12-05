@@ -8,8 +8,13 @@ const HomeLinkText: React.FC<{ href: string }> = ({ href }) => (
   <Link href={href}>
     <a
       css={css`
+        color: ${colors.white.base};
         font-size: 20px;
         font-weight: bold;
+
+        &:hover {
+          color: ${colors.white.base};
+        }
       `}
     >
       Home
@@ -38,6 +43,7 @@ const AdminLayout = ({ title, children }: LayoutProps) => {
       >
         <header
           css={css`
+            background-color: ${colors.black['500']};
             display: flex;
             align-items: center;
             justify-content: space-between;

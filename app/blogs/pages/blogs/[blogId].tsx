@@ -12,7 +12,7 @@ import {
 import getBlog from 'app/blogs/queries/getBlog'
 import deleteBlog from 'app/blogs/mutations/deleteBlog'
 import SlimLayout from 'app/layouts/SlimLayout'
-import LinkText from '../../components/LinkText'
+import LinkText from '../../../components/LinkText'
 import OutLineButton from '../../components/OutLineButton'
 import Title from '../../components/Title'
 

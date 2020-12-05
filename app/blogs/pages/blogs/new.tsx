@@ -6,7 +6,7 @@ import BlogForm from 'app/blogs/components/BlogForm'
 import { useState } from 'react'
 import SlimLayout from '../../../layouts/SlimLayout'
 import { colors } from '../../../stylesheets/colors'
-import LinkText from '../../components/LinkText'
+import LinkText from '../../../components/LinkText'
 import Title from '../../components/Title'
 
 const formTitleStyle = css`

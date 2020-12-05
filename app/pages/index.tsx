@@ -1,8 +1,11 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react'
 import { Link, BlitzPage, useMutation } from 'blitz'
 import Layout from 'app/layouts/Layout'
 import logout from 'app/auth/mutations/logout'
 import { useCurrentUser } from 'app/hooks/useCurrentUser'
 import { Suspense } from 'react'
+import LinkText from '../components/LinkText'
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -23,6 +26,13 @@ const UserInfo = () => {
           User id: <code>{currentUser.id}</code>
           <br />
           User role: <code>{currentUser.role}</code>
+        </div>
+        <div
+          css={css`
+            margin-top: 10px;
+          `}
+        >
+          <LinkText href="/admin">admin</LinkText>
         </div>
       </>
     )
@@ -47,13 +57,37 @@ const UserInfo = () => {
 const Home: BlitzPage = () => {
   return (
     <>
-      <h1>[[Home page]]</h1>
-      <main>
-        <div>
-          <h2>Links</h2>
-          <Link href="/blogs">
-            <a>blogs</a>
-          </Link>
+      <h1
+        css={css`
+          font-size: 30px;
+          font-weight: bold;
+        `}
+      >
+        [Home Page]
+      </h1>
+      <main
+        css={css`
+          margin-top: 30px;
+        `}
+      >
+        <h2
+          css={css`
+            font-size: 20px;
+            font-weight: bold;
+          `}
+        >
+          Links
+        </h2>
+        <div
+          css={css`
+            margin-top: 10px;
+          `}
+        >
+          <ul>
+            <li>
+              <LinkText href="/blogs">blogs</LinkText>
+            </li>
+          </ul>
         </div>
         <div
           style={{
