@@ -37,20 +37,20 @@ model Session {
   privateData        String?
 }
 
-model Question {
+model Blog {
   id        Int      @default(autoincrement()) @id
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  text      String   
-  choices   Choice[] 
+  title     String   
+  body      String   
+  tags      Tag[]    
 }
 
-model Choice {
-  id         Int      @default(autoincrement()) @id
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  text       String   
-  votes      Int      @default(0)
-  question   Question @relation(fields: [questionId], references: [id])
-  questionId Int      
+model Tag {
+  id        Int      @default(autoincrement()) @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   
+  blog      Blog     @relation(fields: [blogId], references: [id])
+  blogId    Int      
 }

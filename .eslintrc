@@ -1,0 +1,20 @@
+{
+  "env": {
+    "es2020": true
+  },
+  "extends": [
+    "plugin:prettier/recommended",
+    "react-app",
+    "plugin:jsx-a11y/recommended",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": ["jsx-a11y", "@emotion"],
+  "rules": {
+    "import/no-anonymous-default-export": "error",
+    "import/no-webpack-loader-syntax": "off",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "prettier/prettier": ["error", { "singleQuote": true, "semi": false }],
+    "@emotion/jsx-import": "error"
+  }
+}

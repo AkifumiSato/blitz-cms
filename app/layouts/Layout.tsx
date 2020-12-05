@@ -1,20 +1,100 @@
-import { ReactNode } from "react"
-import { Head } from "blitz"
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react'
+import { FC } from 'react'
+import { Head, Link } from 'blitz'
+import { colors } from '../stylesheets/colors'
+
+type LinkTextProps = {
+  href: string
+  strong?: boolean
+  disabled?: boolean
+}
+
+const LinkText: FC<LinkTextProps> = ({
+  href,
+  strong = false,
+  disabled = false,
+  children,
+}) =>
+  disabled ? (
+    <div
+      css={css`
+        font-size: ${strong ? '20px' : '15px'};
+        font-weight: bold;
+      `}
+    >
+      {children}
+    </div>
+  ) : (
+    <Link href={href}>
+      <a
+        css={css`
+          font-size: ${strong ? '20px' : '15px'};
+          font-weight: bold;
+          padding: 10px;
+        `}
+      >
+        {children}
+      </a>
+    </Link>
+  )
 
 type LayoutProps = {
   title?: string
-  children: ReactNode
+  homeLink?: boolean
 }
 
-const Layout = ({ title, children }: LayoutProps) => {
+const Layout: FC<LayoutProps> = ({ title, homeLink = false, children }) => {
   return (
     <>
       <Head>
-        <title>{title || "blitz-local-demo"}</title>
+        <title>{title || 'blitz-local-demo'}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {children}
+      <div
+        css={css`
+          background-color: ${colors.white.base};
+          box-sizing: border-box;
+          min-height: 100vh;
+        `}
+      >
+        <header
+          css={css`
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            height: 70px;
+            padding: 5px 50px;
+            position: fixed;
+            top: 0;
+            width: 100vw;
+          `}
+        >
+          <div>
+            <LinkText href="/" strong={true} disabled={homeLink}>
+              Home
+            </LinkText>
+          </div>
+          <div
+            css={css`
+              display: flex;
+              justify-content: space-between;
+              width: 200px;
+            `}
+          >
+            <LinkText href="/blogs">blog</LinkText>
+            <LinkText href="/admin">admin</LinkText>
+          </div>
+        </header>
+        <div
+          css={css`
+            padding: 100px 50px 50px;
+          `}
+        >
+          {children}
+        </div>
+      </div>
     </>
   )
 }
