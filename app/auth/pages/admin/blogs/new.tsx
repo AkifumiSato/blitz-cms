@@ -4,18 +4,12 @@ import { useRouter, useMutation, BlitzPage } from 'blitz'
 import createBlog from 'app/blogs/mutations/createBlog'
 import BlogForm from 'app/blogs/components/BlogForm'
 import { useState } from 'react'
-import { colors } from 'app/stylesheets/colors'
 import LinkText from 'app/components/LinkText'
 import Title from 'app/auth/components/Title'
 import AdminLayout from 'app/layouts/AdminLayout'
 import FormItem from '../../../components/FromItem'
 import InputText from '../../../components/InputText'
 import Textarea from '../../../components/Textarea'
-
-const formTitleStyle = css`
-  font-size: 20px;
-  font-weight: bold;
-`
 
 const NewBlogPage: BlitzPage = () => {
   const router = useRouter()
@@ -43,7 +37,7 @@ const NewBlogPage: BlitzPage = () => {
             onSubmitClick={async (e) => {
               e.preventDefault()
               try {
-                const blog = await createBlogMutation({
+                await createBlogMutation({
                   data: {
                     title,
                     body,
