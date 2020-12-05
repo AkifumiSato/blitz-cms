@@ -19,7 +19,7 @@ const NewBlogPage: BlitzPage = () => {
 
   return (
     <div>
-      <Title size="min">Create New Blog</Title>
+      <Title size="min">Create new post</Title>
       <div
         css={css`
           margin-top: 30px;
@@ -72,7 +72,7 @@ const NewBlogPage: BlitzPage = () => {
 }
 
 NewBlogPage.getLayout = (page) => (
-  <AdminLayout title={'Create New Blog'}>{page}</AdminLayout>
+  <AdminLayout title={'Create new post'}>{page}</AdminLayout>
 )
 
 export default NewBlogPage

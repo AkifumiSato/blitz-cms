@@ -24,7 +24,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ onSubmitClick, children }) => {
       >
         <div
           css={css`
-            width: 300px;
+            width: 200px;
           `}
         >
           <Button onClick={onSubmitClick}>Submit</Button>

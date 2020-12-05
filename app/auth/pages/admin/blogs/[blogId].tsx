@@ -18,8 +18,10 @@ import getTags from 'app/tags/queries/getTags'
 import TagsForm from 'app/blogs/components/TagsForm'
 import createTag from 'app/tags/mutations/createTag'
 import Title from 'app/auth/components/Title'
+import deleteBlog from '../../../../blogs/mutations/deleteBlog'
 import FormItem from '../../../components/FromItem'
 import InputText from '../../../components/InputText'
+import OutLineButton from '../../../components/OutLineButton'
 import Textarea from '../../../components/Textarea'
 
 export const EditBlog: FC = () => {
@@ -33,10 +35,30 @@ export const EditBlog: FC = () => {
   const [{ tags }] = usePaginatedQuery(getTags, {
     orderBy: { id: 'asc' },
   })
+  const [deleteBlogMutation] = useMutation(deleteBlog)
 
   return (
     <div>
-      <Title size="min">{blog.title}</Title>
+      <div
+        css={css`
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        `}
+      >
+        <Title size="min">{blog.title}</Title>
+        <OutLineButton
+          onClick={async () => {
+            if (window.confirm('This will be deleted')) {
+              await deleteBlogMutation({ where: { id: blogId } })
+              await router.push('/admin')
+            }
+          }}
+        >
+          delete
+        </OutLineButton>
+      </div>
       <div
         css={css`
           margin-top: 30px;
