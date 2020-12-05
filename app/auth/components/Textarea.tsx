@@ -7,12 +7,19 @@ type Props = {
   value: string
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>
   maxLength?: number
+  placeholder?: string
 }
 
-const Textarea: React.FC<Props> = ({ value, onChange, maxLength }) => (
+const Textarea: React.FC<Props> = ({
+  value,
+  onChange,
+  maxLength,
+  placeholder,
+}) => (
   <textarea
     value={value}
     maxLength={maxLength}
+    placeholder={placeholder}
     onChange={onChange}
     css={css`
       border: 1px solid ${colors.gray['400']};

@@ -7,13 +7,20 @@ type Props = {
   value: string
   onChange: React.ChangeEventHandler<HTMLInputElement>
   maxLength?: number
+  placeholder?: string
 }
 
-const InputText: React.FC<Props> = ({ value, onChange, maxLength }) => (
+const InputText: React.FC<Props> = ({
+  value,
+  onChange,
+  maxLength,
+  placeholder,
+}) => (
   <input
     type="text"
     value={value}
     maxLength={maxLength}
+    placeholder={placeholder}
     onChange={onChange}
     css={css`
       border: 1px solid ${colors.gray['400']};

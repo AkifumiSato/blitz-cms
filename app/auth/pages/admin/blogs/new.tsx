@@ -4,10 +4,13 @@ import { useRouter, useMutation, BlitzPage } from 'blitz'
 import createBlog from 'app/blogs/mutations/createBlog'
 import BlogForm from 'app/blogs/components/BlogForm'
 import { useState } from 'react'
-import SlimLayout from 'app/layouts/SlimLayout'
 import { colors } from 'app/stylesheets/colors'
 import LinkText from 'app/components/LinkText'
 import Title from 'app/auth/components/Title'
+import AdminLayout from 'app/layouts/AdminLayout'
+import FormItem from '../../../components/FromItem'
+import InputText from '../../../components/InputText'
+import Textarea from '../../../components/Textarea'
 
 const formTitleStyle = css`
   font-size: 20px;
@@ -22,11 +25,10 @@ const NewBlogPage: BlitzPage = () => {
 
   return (
     <div>
-      <Title>Create New Blog</Title>
-
+      <Title size="min">Create New Blog</Title>
       <div
         css={css`
-          margin-top: 50px;
+          margin-top: 30px;
         `}
       >
         <div>
@@ -47,54 +49,27 @@ const NewBlogPage: BlitzPage = () => {
                     body,
                   },
                 })
-                await router.push(`/blogs/${blog.id}`)
+                await router.push('/admin')
               } catch (error) {
                 alert('Error creating blog ' + JSON.stringify(error, null, 2))
               }
             }}
           >
-            <div>
-              <h3 css={formTitleStyle}>Title</h3>
-              <div>
-                <input
-                  placeholder="please input blog title!"
-                  css={css`
-                    border: 1px solid ${colors.gray['400']};
-                    border-radius: 5px;
-                    padding: 10px;
-                    margin-top: 30px;
-                    width: 50%;
-                    line-height: 1.5;
-                  `}
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </div>
-            </div>
-            <div
-              css={css`
-                margin-top: 50px;
-              `}
-            >
-              <h3 css={formTitleStyle}>Body</h3>
-              <div>
-                <textarea
-                  placeholder="please input blog body!"
-                  css={css`
-                    border: 1px solid ${colors.gray['400']};
-                    border-radius: 5px;
-                    padding: 10px;
-                    margin-top: 30px;
-                    height: 300px;
-                    width: 100%;
-                    line-height: 1.5;
-                  `}
-                  value={body}
-                  onChange={(e) => setBody(e.target.value)}
-                />
-              </div>
-            </div>
+            <FormItem keyName="Title">
+              <InputText
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                maxLength={200}
+                placeholder="please input blog title!"
+              />
+            </FormItem>
+            <FormItem keyName="Body">
+              <Textarea
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+                placeholder="please input blog body!"
+              />
+            </FormItem>
           </BlogForm>
         </div>
       </div>
@@ -103,7 +78,7 @@ const NewBlogPage: BlitzPage = () => {
 }
 
 NewBlogPage.getLayout = (page) => (
-  <SlimLayout title={'Create New Blog'}>{page}</SlimLayout>
+  <AdminLayout title={'Create New Blog'}>{page}</AdminLayout>
 )
 
 export default NewBlogPage
