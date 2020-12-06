@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 import React from 'react'
+import { parse } from 'markdown-wasm'
 import { BlitzPage, invokeWithMiddleware, GetServerSideProps } from 'blitz'
 import getBlog from 'app/blogs/queries/getBlog'
 import LinkText from 'app/components/LinkText'
@@ -27,7 +28,7 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       blog: {
         title: blog.title,
-        body: blog.body,
+        body: parse(blog.body),
       },
     },
   }
@@ -36,15 +37,36 @@ export const getServerSideProps: GetServerSideProps<
 const ShowBlogPage: BlitzPage<Props> = ({ blog }) => (
   <div>
     <Title>{blog.title}</Title>
-    <p
+    <div
       css={css`
         margin-top: 30px;
-        font-size: 18px;
-        line-height: 2;
       `}
     >
-      {blog.body}
-    </p>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: blog.body,
+        }}
+        css={css`
+          display: grid;
+          grid-template-columns: 1fr;
+          row-gap: 30px;
+
+          & > p {
+            font-size: 18px;
+            line-height: 2;
+          }
+
+          & > ul {
+            list-style: disc;
+            margin-left: 30px;
+
+            & > li:not(:first-of-type) {
+              margin-top: 10px;
+            }
+          }
+        `}
+      />
+    </div>
     <div
       css={css`
         margin-top: 50px;
