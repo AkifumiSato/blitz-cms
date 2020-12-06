@@ -11,7 +11,8 @@ Home page capture.
 
 ### Blog post list
 
-TBW
+![Blog post list page.](docs/assets/blogTop.png 'login')
+Home page capture.
 
 ### Blog post page
 
