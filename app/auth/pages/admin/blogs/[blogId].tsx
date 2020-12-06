@@ -51,8 +51,14 @@ export const EditBlog: FC = () => {
         <OutLineButton
           onClick={async () => {
             if (window.confirm('This will be deleted')) {
-              await deleteBlogMutation({ where: { id: blogId } })
-              await router.push('/admin')
+              try {
+                // todo Tagが関連付られている場合に削除できないので対応
+                await deleteBlogMutation({ where: { id: blogId } })
+                await router.push('/admin')
+              } catch (e) {
+                console.error(e)
+                alert('Error delete blog')
+              }
             }
           }}
         >

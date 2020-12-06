@@ -1,20 +1,11 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 import React from 'react'
-import {
-  useRouter,
-  useParam,
-  BlitzPage,
-  useMutation,
-  invokeWithMiddleware,
-  GetServerSideProps,
-} from 'blitz'
+import { BlitzPage, invokeWithMiddleware, GetServerSideProps } from 'blitz'
 import getBlog from 'app/blogs/queries/getBlog'
-import deleteBlog from 'app/blogs/mutations/deleteBlog'
-import SlimLayout from 'app/layouts/SlimLayout'
-import LinkText from '../../../components/LinkText'
-import OutLineButton from '../../components/OutLineButton'
-import Title from '../../components/Title'
+import LinkText from 'app/components/LinkText'
+import Layout from 'app/layouts/Layout'
+import Title from 'app/blogs/components/Title'
 
 type Props = {
   blog: {
@@ -42,57 +33,28 @@ export const getServerSideProps: GetServerSideProps<
   }
 }
 
-const ShowBlogPage: BlitzPage<Props> = ({ blog }) => {
-  const router = useRouter()
-  const blogId = useParam('blogId', 'number')
-  const [deleteBlogMutation] = useMutation(deleteBlog)
-
-  return (
-    <div>
-      <Title>{blog.title}</Title>
-      <p
-        css={css`
-          margin-top: 30px;
-          font-size: 20px;
-          line-height: 1.5;
-        `}
-      >
-        {blog.body}
-      </p>
-      <div
-        css={css`
-          margin-top: 50px;
-          display: flex;
-          justify-content: space-between;
-          width: 300px;
-        `}
-      >
-        <OutLineButton href={`/blogs/${blogId}/edit`}>Edit</OutLineButton>
-
-        <OutLineButton
-          onClick={async () => {
-            if (window.confirm('This will be deleted')) {
-              await deleteBlogMutation({ where: { id: blogId } })
-              router.push('/blogs')
-            }
-          }}
-        >
-          Delete
-        </OutLineButton>
-      </div>
-      <div
-        css={css`
-          margin-top: 50px;
-        `}
-      >
-        <LinkText href="/blogs">&lt; Blogs</LinkText>
-      </div>
+const ShowBlogPage: BlitzPage<Props> = ({ blog }) => (
+  <div>
+    <Title>{blog.title}</Title>
+    <p
+      css={css`
+        margin-top: 30px;
+        font-size: 18px;
+        line-height: 2;
+      `}
+    >
+      {blog.body}
+    </p>
+    <div
+      css={css`
+        margin-top: 50px;
+      `}
+    >
+      <LinkText href="/blogs">&lt; Blogs</LinkText>
     </div>
-  )
-}
-
-ShowBlogPage.getLayout = (page) => (
-  <SlimLayout title={'Blog'}>{page}</SlimLayout>
+  </div>
 )
+
+ShowBlogPage.getLayout = (page) => <Layout title={'Blog'}>{page}</Layout>
 
 export default ShowBlogPage
