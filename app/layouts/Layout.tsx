@@ -21,6 +21,7 @@ const LinkText: FC<LinkTextProps> = ({
       css={css`
         font-size: ${strong ? '20px' : '15px'};
         font-weight: bold;
+        padding: 10px;
       `}
     >
       {children}
@@ -89,7 +90,10 @@ const Layout: FC<LayoutProps> = ({ title, homeLink = false, children }) => {
         </header>
         <div
           css={css`
+            box-sizing: border-box;
             padding: 100px 50px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
           `}
         >
           {children}

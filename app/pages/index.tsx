@@ -5,20 +5,8 @@ import Layout from 'app/layouts/Layout'
 import { colors } from '../stylesheets/colors'
 
 const flowColor = keyframes`
-  0%, 5%, 85%, 100% {
-    color: ${colors.black['700']};
-  }
-
-  13%, 35% {
-    color: ${colors.ocean['500']};
-  }
-  
-  43%, 60% {
-    color: ${colors.pink['500']};
-  }
-  
-  68%, 80% {
-    color: ${colors.teal['500']};
+  to { 
+    background-position-x: 114%;
   }
 `
 
@@ -32,11 +20,25 @@ const Home: BlitzPage = () => {
           justify-content: center;
           width: 100%;
           height: 700px;
-          animation: ${flowColor} 10s infinite;
         `}
       >
         <h1
           css={css`
+            background: linear-gradient(
+                to right,
+                #f00 0%,
+                #f80 14.28%,
+                #dd0 28.56%,
+                #0d0 42.85%,
+                #0dd 57.14%,
+                #00f 71.42%,
+                #e0e 85.71%,
+                #f00 100%
+              )
+              0 center / 1000% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: ${flowColor} 10s linear infinite;
             font-size: 20px;
             font-weight: bold;
           `}

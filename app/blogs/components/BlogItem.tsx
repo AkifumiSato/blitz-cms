@@ -1,36 +1,60 @@
 /** @jsx jsx */
 import { Link } from '@blitzjs/core'
-import { LinkProps } from 'next/link'
 import { css, jsx } from '@emotion/react'
 import React from 'react'
 import { colors } from '../../stylesheets/colors'
+import { Blog } from '@prisma/client'
 
-const BlogItem: React.FC<LinkProps> = ({ children, ...props }) => {
-  return (
-    <Link {...props}>
+type Props = {
+  blog: Blog
+}
+
+const BlogItem: React.FC<Props> = ({ blog }) => (
+  <div
+    css={css`
+      padding: 20px;
+      width: 100%;
+      position: relative;
+    `}
+  >
+    <Link href={`/blogs/${blog.id}`}>
       <a
         css={css`
-          background-color: ${colors.white.base};
-          border: 1px solid ${colors.gray['300']};
-          border-radius: 5px;
-          display: block;
-          font-size: 15px;
-          padding: 20px;
-          width: 100%;
-          transition-property: color, background-color;
-          transition-duration: 0.5s;
-          cursor: pointer;
+          display: inline-block;
+          font-size: 20px;
+          font-weight: bold;
 
-          &:hover {
-            color: ${colors.gray['700']};
-            background-color: ${colors.gray['100']};
+          &::before {
+            bottom: 0;
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
           }
         `}
       >
-        {children}
+        {blog.title}
       </a>
     </Link>
-  )
-}
+    <p
+      css={css`
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: ${colors.gray['500']};
+        font-size: 15px;
+        line-height: 2;
+        margin-top: 10px;
+      `}
+    >
+      {blog.body}
+    </p>
+  </div>
+)
 
 export default BlogItem
