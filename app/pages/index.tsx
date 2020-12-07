@@ -2,7 +2,6 @@
 import { css, jsx, keyframes } from '@emotion/react'
 import { BlitzPage } from 'blitz'
 import Layout from 'app/layouts/Layout'
-import { colors } from '../stylesheets/colors'
 
 const flowColor = keyframes`
   to { 

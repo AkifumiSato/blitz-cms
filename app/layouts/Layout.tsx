@@ -61,6 +61,8 @@ const Layout: FC<LayoutProps> = ({ title, homeLink = false, children }) => {
       >
         <header
           css={css`
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(5px);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -70,6 +72,7 @@ const Layout: FC<LayoutProps> = ({ title, homeLink = false, children }) => {
             position: fixed;
             top: 0;
             width: 100vw;
+            z-index: 1;
           `}
         >
           <div>
