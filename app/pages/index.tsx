@@ -18,7 +18,8 @@ const Home: BlitzPage = () => {
           align-items: center;
           justify-content: center;
           width: 100%;
-          height: 700px;
+          max-height: 700px;
+          height: calc(100vh - 150px);
         `}
       >
         <h1
