@@ -80,16 +80,18 @@ const Layout: FC<LayoutProps> = ({ title, homeLink = false, children }) => {
               Home
             </LinkText>
           </div>
-          <div
-            css={css`
-              display: flex;
-              justify-content: space-between;
-              width: 200px;
-            `}
-          >
-            <LinkText href="/blogs">blog</LinkText>
-            <LinkText href="/admin">admin</LinkText>
-          </div>
+          {!homeLink && (
+            <div
+              css={css`
+                display: flex;
+                justify-content: space-between;
+                width: 200px;
+              `}
+            >
+              <LinkText href="/blogs">blog</LinkText>
+              <LinkText href="/admin">admin</LinkText>
+            </div>
+          )}
         </header>
         <div
           css={css`

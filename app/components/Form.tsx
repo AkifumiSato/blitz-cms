@@ -47,7 +47,11 @@ export function Form<S extends z.ZodType<any, any>>({
             </div>
           )}
 
-          <button type="submit" disabled={submitting}>
+          <button
+            type="submit"
+            disabled={submitting}
+            style={{ textDecoration: 'underline' }}
+          >
             {submitText}
           </button>
 

@@ -1,50 +1,46 @@
 /** @jsx jsx */
-import { css, jsx, keyframes } from '@emotion/react'
-import { BlitzPage } from 'blitz'
+import { css, jsx } from '@emotion/react'
+import { BlitzPage, Link } from 'blitz'
 import Layout from 'app/layouts/Layout'
+import { FC } from 'react'
 
-const flowColor = keyframes`
-  to { 
-    background-position-x: 114%;
-  }
-`
+const LinkText: FC<{ href: string }> = ({ href, children }) => (
+  <Link href={href}>
+    <a
+      css={css`
+        font-size: 15px;
+        font-weight: bold;
+        text-decoration: underline;
+      `}
+    >
+      {children}
+    </a>
+  </Link>
+)
 
 const Home: BlitzPage = () => {
   return (
     <main>
-      <div
+      <h1
         css={css`
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          max-height: 700px;
-          height: calc(100vh - 150px);
+          font-size: 20px;
+          font-weight: bold;
         `}
       >
-        <h1
-          css={css`
-            background: linear-gradient(
-                to right,
-                #f00 0%,
-                #f80 14.28%,
-                #dd0 28.56%,
-                #0d0 42.85%,
-                #0dd 57.14%,
-                #00f 71.42%,
-                #e0e 85.71%,
-                #f00 100%
-              )
-              0 center / 1000% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: ${flowColor} 10s linear infinite;
-            font-size: 20px;
-            font-weight: bold;
-          `}
-        >
-          Hello world.
-        </h1>
+        Hello world.
+      </h1>
+      <div
+        css={css`
+          display: grid;
+          grid-template-columns: 100px;
+          row-gap: 20px;
+          margin-top: 50px;
+        `}
+      >
+        <LinkText href="/login">login</LinkText>
+        <LinkText href="/signup">signup</LinkText>
+        <LinkText href="/admin">admin</LinkText>
+        <LinkText href="/blogs">blogs</LinkText>
       </div>
     </main>
   )

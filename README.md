@@ -2,6 +2,28 @@
 
 This app is original CMS created by `blitz.js`.
 
+# development
+### setup
+
+1. clone
+2. install
+
+```
+yarn
+```
+
+3. migration
+
+```
+yarn run blitz migration
+```
+
+4. start
+
+```
+yarn start
+```
+
 ## Public page
 
 ### Home
